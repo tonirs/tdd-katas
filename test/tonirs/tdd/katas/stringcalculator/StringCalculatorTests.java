@@ -42,4 +42,11 @@ public class StringCalculatorTests {
         stringCalculator.add("1,-2,3");
     }
 
+    @Test
+    public void numbersBiggerThanOneThousandAreIgnored() {
+        assertThat(stringCalculator.add("2,1000"), is(equalTo(1002)));
+        assertThat(stringCalculator.add("2,1001"), is(equalTo(2)));
+        assertThat(stringCalculator.add("2,2001"), is(equalTo(2)));
+    }
+
 }

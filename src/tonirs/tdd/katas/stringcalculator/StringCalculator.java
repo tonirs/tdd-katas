@@ -25,6 +25,9 @@ public class StringCalculator {
             if(number < 0) {
                 throw new NegativesNotAllowedException();
             }
+            if(number > 1000) {
+                continue;
+            }
             sum += number;
         }
         return sum;
