@@ -1,4 +1,6 @@
-package tonirs.tdd.katas;
+package tonirs.tdd.katas.stringcalculator;
+
+import tonirs.tdd.katas.stringcalculator.exceptions.NegativesNotAllowedException;
 
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
@@ -18,8 +20,12 @@ public class StringCalculator {
         int sum = 0;
         StringTokenizer stringTokenizer = new StringTokenizer(numbers, delimiters);
         while(stringTokenizer.hasMoreTokens()) {
-            final String number = stringTokenizer.nextToken();
-            sum += Integer.valueOf(number);
+            final String token = stringTokenizer.nextToken();
+            final int number = Integer.valueOf(token);
+            if(number < 0) {
+                throw new NegativesNotAllowedException();
+            }
+            sum += number;
         }
         return sum;
     }
