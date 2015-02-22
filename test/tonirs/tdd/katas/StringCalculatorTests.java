@@ -32,7 +32,7 @@ public class StringCalculatorTests {
     }
 
     @Test
-    public void test() {
+    public void addWithZeroNumbersReturnsZero() {
         assertThat(stringCalculator.add(""), is(equalTo(0)));
     }
 }
