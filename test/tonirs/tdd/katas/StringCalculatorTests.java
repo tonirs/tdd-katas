@@ -24,4 +24,10 @@ public class StringCalculatorTests {
         assertThat(stringCalculator.add("-3,5,-2,7"), is(equalTo(7)));
     }
 
+    @Test
+    public void addSupportsNewLinesAndCommasAsDelimiters() {
+        assertThat(stringCalculator.add("1\n3,5"), is(equalTo(9)));
+        assertThat(stringCalculator.add("1,\n"), is(equalTo(1)));
+    }
+
 }
