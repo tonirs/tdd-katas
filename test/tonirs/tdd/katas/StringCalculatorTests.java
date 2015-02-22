@@ -16,20 +16,12 @@ public class StringCalculatorTests {
     }
 
     @Test
-    public void addWithZeroNumbersReturnsZero() {
+    public void addSupportsAnyAmountOfNumbers() {
         assertThat(stringCalculator.add(""), is(equalTo(0)));
-    }
-
-    @Test
-    public void addWithOneNumbersReturnsTheNumber() {
         assertThat(stringCalculator.add("3"), is(equalTo(3)));
-        assertThat(stringCalculator.add("5"), is(equalTo(5)));
-    }
-
-    @Test
-    public void addWithTwoNumbersReturnsTheSumOfTheNumbers() {
-        assertThat(stringCalculator.add("3,5"), is(equalTo(8)));
         assertThat(stringCalculator.add("-3,5"), is(equalTo(2)));
+        assertThat(stringCalculator.add("1,3,5"), is(equalTo(9)));
+        assertThat(stringCalculator.add("-3,5,-2,7"), is(equalTo(7)));
     }
 
 }
