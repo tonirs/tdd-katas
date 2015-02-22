@@ -30,4 +30,10 @@ public class StringCalculatorTests {
         assertThat(stringCalculator.add("1,\n"), is(equalTo(1)));
     }
 
+    @Test
+    public void addSupportsGivenDelimiters() {
+        assertThat(stringCalculator.add("//;+\n1;2\n3,4+5"), is(equalTo(15)));
+        assertThat(stringCalculator.add("//\n1,2\n3,4,5"), is(equalTo(15)));
+    }
+
 }
