@@ -1,8 +1,8 @@
 package tonirs.tdd.katas.stringcalculator;
 
+import tonirs.tdd.katas.stringcalculator.exceptions.DelimiterNotFollowedByNumberException;
 import tonirs.tdd.katas.stringcalculator.exceptions.NegativesNotAllowedException;
 
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,10 +17,16 @@ public class StringCalculator {
         final String numbers = stringCalculatorMatcher.getNumbers();
         final String delimiters = stringCalculatorMatcher.getDelimiters();
 
+        if(numbers.isEmpty()) {
+            return 0;
+        }
+
         int sum = 0;
-        StringTokenizer stringTokenizer = new StringTokenizer(numbers, delimiters);
-        while(stringTokenizer.hasMoreTokens()) {
-            final String token = stringTokenizer.nextToken();
+        final String[] tokens = numbers.split("[" + delimiters + "]", -1);
+        for(final String token : tokens) {
+            if(token.isEmpty()) {
+                throw new DelimiterNotFollowedByNumberException();
+            }
             final int number = Integer.valueOf(token);
             if(number < 0) {
                 throw new NegativesNotAllowedException();

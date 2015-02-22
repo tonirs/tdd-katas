@@ -1,7 +1,9 @@
 package tonirs.tdd.katas.stringcalculator;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import tonirs.tdd.katas.stringcalculator.exceptions.DelimiterNotFollowedByNumberException;
 import tonirs.tdd.katas.stringcalculator.exceptions.NegativesNotAllowedException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -18,8 +20,12 @@ public class StringCalculatorTests {
     }
 
     @Test
-    public void addSupportsAnyAmountOfNumbers() {
+    public void addSupportsEmptyNumbersString() {
         assertThat(stringCalculator.add(""), is(equalTo(0)));
+    }
+
+    @Test
+    public void addSupportsAnyAmountOfNumbers() {
         assertThat(stringCalculator.add("3"), is(equalTo(3)));
         assertThat(stringCalculator.add("3,5"), is(equalTo(8)));
         assertThat(stringCalculator.add("1,3,5"), is(equalTo(9)));
@@ -28,7 +34,12 @@ public class StringCalculatorTests {
     @Test
     public void addSupportsNewLinesAndCommasAsDelimiters() {
         assertThat(stringCalculator.add("1\n3,5"), is(equalTo(9)));
-        assertThat(stringCalculator.add("1,\n"), is(equalTo(1)));
+        assertThat(stringCalculator.add("1,2\n3"), is(equalTo(6)));
+    }
+
+    @Test(expected = DelimiterNotFollowedByNumberException.class)
+    public void delimiterNotFollowedByNumberThrowsException() {
+        stringCalculator.add("1,\n");
     }
 
     @Test
