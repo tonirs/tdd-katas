@@ -35,4 +35,11 @@ public class StringCalculatorTests {
     public void addWithZeroNumbersReturnsZero() {
         assertThat(stringCalculator.add(""), is(equalTo(0)));
     }
+
+    @Test
+    public void addWithOneNumbersReturnsTheNumber() {
+        assertThat(stringCalculator.add("3"), is(equalTo(3)));
+        assertThat(stringCalculator.add("5"), is(equalTo(5)));
+    }
+
 }
