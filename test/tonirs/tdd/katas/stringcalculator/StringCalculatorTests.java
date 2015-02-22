@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import tonirs.tdd.katas.stringcalculator.exceptions.DelimiterNotFollowedByNumberException;
+import tonirs.tdd.katas.stringcalculator.exceptions.InvalidNumberException;
 import tonirs.tdd.katas.stringcalculator.exceptions.NegativesNotAllowedException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -31,6 +32,11 @@ public class StringCalculatorTests {
         assertThat(stringCalculator.add("1,3,5"), is(equalTo(9)));
     }
 
+    @Test(expected = InvalidNumberException.class)
+    public void invalidNumberThrowsException() {
+        stringCalculator.add("1,z,3");
+    }
+
     @Test
     public void addSupportsNewLinesAndCommasAsDelimiters() {
         assertThat(stringCalculator.add("1\n3,5"), is(equalTo(9)));
@@ -40,12 +46,6 @@ public class StringCalculatorTests {
     @Test(expected = DelimiterNotFollowedByNumberException.class)
     public void delimiterNotFollowedByNumberThrowsException() {
         stringCalculator.add("1,\n");
-    }
-
-    @Test
-    public void addSupportsGivenDelimiters() {
-        assertThat(stringCalculator.add("//;+\n1;2\n3,4+5"), is(equalTo(15)));
-        assertThat(stringCalculator.add("//\n1,2\n3,4,5"), is(equalTo(15)));
     }
 
     @Test(expected = NegativesNotAllowedException.class)
@@ -58,6 +58,13 @@ public class StringCalculatorTests {
         assertThat(stringCalculator.add("2,1000"), is(equalTo(1002)));
         assertThat(stringCalculator.add("2,1001"), is(equalTo(2)));
         assertThat(stringCalculator.add("2,2001"), is(equalTo(2)));
+    }
+
+    @Test
+    public void addSupportsGivenDelimitersOfAnyLength() {
+        assertThat(stringCalculator.add("//<;><+>\n1;2\n3,4+5"), is(equalTo(15)));
+        assertThat(stringCalculator.add("//<\n>\n1,2\n3,4,5"), is(equalTo(15)));
+        assertThat(stringCalculator.add("//<;><***><+>\n1;2\n3***4+5,6"), is(equalTo(21)));
     }
 
 }
