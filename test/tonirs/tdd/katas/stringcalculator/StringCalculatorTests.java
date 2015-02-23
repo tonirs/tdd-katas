@@ -1,7 +1,6 @@
 package tonirs.tdd.katas.stringcalculator;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import tonirs.tdd.katas.stringcalculator.exceptions.DelimiterNotFollowedByNumberException;
 import tonirs.tdd.katas.stringcalculator.exceptions.InvalidNumberException;
