@@ -10,6 +10,7 @@ import static org.junit.Assert.assertThat;
 public class FizzBuzzTests {
 
     private static final String FIZZ = "Fizz";
+    private static final String BUZZ = "Buzz";
 
     private FizzBuzz fizzBuzz;
 
@@ -19,18 +20,27 @@ public class FizzBuzzTests {
     }
 
     @Test
-    public void numberNotMultipleOfThreeTranslatesToItself() {
-        assertThat(fizzBuzz.translate(1), is(equalTo("1")));
-        assertThat(fizzBuzz.translate(2), is(equalTo("2")));
-        assertThat(fizzBuzz.translate(4), is(equalTo("4")));
-        assertThat(fizzBuzz.translate(5), is(equalTo("5")));
+    public void numberNeitherMultipleOfThreeNorFiveTranslatesToItself() {
+        final int[] numbers = { 1, 2, 4 };
+        for(int number : numbers) {
+            assertThat(fizzBuzz.translate(number), is(equalTo(String.valueOf(number))));
+        }
     }
 
     @Test
     public void numberMultipleOfThreeTranslatesToFizz() {
-        assertThat(fizzBuzz.translate(3), is(equalTo(FIZZ)));
-        assertThat(fizzBuzz.translate(6), is(equalTo(FIZZ)));
-        assertThat(fizzBuzz.translate(18), is(equalTo(FIZZ)));
+        final int[] numbers = { 3, 6, 18 };
+        for(int number : numbers) {
+            assertThat(fizzBuzz.translate(number), is(equalTo(FIZZ)));
+        }
+    }
+
+    @Test
+    public void numberMultipleOfFiveTranslatesToBuzz() {
+        final int[] numbers = { 5, 10, 15 };
+        for(int number : numbers) {
+            assertThat(fizzBuzz.translate(number), is(equalTo(BUZZ)));
+        }
     }
 
 }
