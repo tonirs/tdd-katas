@@ -11,6 +11,7 @@ public class FizzBuzzTests {
 
     private static final String FIZZ = "Fizz";
     private static final String BUZZ = "Buzz";
+    private static final String FIZZBUZZ = FIZZ + BUZZ;
 
     private FizzBuzz fizzBuzz;
 
@@ -20,7 +21,7 @@ public class FizzBuzzTests {
     }
 
     @Test
-    public void numberNeitherMultipleOfThreeNorFiveTranslatesToItself() {
+    public void numbersNeitherMultipleOfThreeNorFiveTranslateToThemselves() {
         final int[] numbers = { 1, 2, 4 };
         for(int number : numbers) {
             assertThat(fizzBuzz.translate(number), is(equalTo(String.valueOf(number))));
@@ -28,7 +29,7 @@ public class FizzBuzzTests {
     }
 
     @Test
-    public void numberMultipleOfThreeTranslatesToFizz() {
+    public void numbersMultipleOfThreeAndNotFiveTranslateToFizz() {
         final int[] numbers = { 3, 6, 18 };
         for(int number : numbers) {
             assertThat(fizzBuzz.translate(number), is(equalTo(FIZZ)));
@@ -36,10 +37,18 @@ public class FizzBuzzTests {
     }
 
     @Test
-    public void numberMultipleOfFiveTranslatesToBuzz() {
-        final int[] numbers = { 5, 10, 15 };
+    public void numbersMultipleOfFiveAndNotThreeTranslateToBuzz() {
+        final int[] numbers = { 5, 10, 20 };
         for(int number : numbers) {
             assertThat(fizzBuzz.translate(number), is(equalTo(BUZZ)));
+        }
+    }
+
+    @Test
+    public void numbersMultipleOfThreeAndFiveTranslateToFizzBuzz() {
+        final int[] numbers = { 15, 30, 45 };
+        for(int number : numbers) {
+            assertThat(fizzBuzz.translate(number), is(equalTo(FIZZBUZZ)));
         }
     }
 
