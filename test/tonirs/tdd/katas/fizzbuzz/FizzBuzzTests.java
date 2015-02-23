@@ -19,6 +19,8 @@ public class FizzBuzzTests {
     @Test
     public void numberNeitherMultipleOfThreeNorFiveTranslatesToItself() {
         assertThat(fizzBuzz.translate(1), is(equalTo("1")));
+        assertThat(fizzBuzz.translate(2), is(equalTo("2")));
+        assertThat(fizzBuzz.translate(4), is(equalTo("4")));
     }
 
 }
